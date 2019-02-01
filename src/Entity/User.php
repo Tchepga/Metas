@@ -2,8 +2,11 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Table(name="user")
@@ -29,9 +32,27 @@ class User implements UserInterface, \Serializable
     private $password;
 
     /**
-     * @ORM\Column(type="string", length=254, unique=true)
+     * @ORM\Column(type="string", length=254)
      */
     private $email;
+
+    /**
+     * @ORM\Column(type="string", length=50)
+     */
+    private $type;
+   
+    /**
+     * @ORM\Column(type="string" ,nullable=true)
+     *
+     * @Assert\NotBlank(message="Ajouter une image jpg")
+     * @Assert\File(mimeTypes={ "image/jpeg" })
+     */
+    private $photo;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $phone;
 
     /**
      * @ORM\Column(name="is_active", type="boolean")
@@ -44,6 +65,8 @@ class User implements UserInterface, \Serializable
      * @ORM\Column(type="json")
      */
     private $roles = [];
+
+
 
     public function __construct()
     {
@@ -156,6 +179,56 @@ class User implements UserInterface, \Serializable
         $this->email = $email;
     }
 
+     /**
+     * @return mixed
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * @param mixed $type
+     */
+    public function setType($type): void
+    {
+        $this->type = $type;
+    }
+
+    
+     /**
+     * @return mixed
+     */
+    public function getPhone()
+    {
+        return $this->phone;
+    }
+
+    /**
+     * @param mixed $phone
+     */
+    public function setPhone($phone): void
+    {
+        $this->phone = $phone;
+    }
+
+    
+     /**
+     * @return mixed
+     */
+    public function getPhoto()
+    {
+        return $this->photo;
+    }
+
+    /**
+     * @param mixed $photo
+     */
+    public function setPhoto($photo): void
+    {
+        $this->photo = $photo;
+    }
+
     /**
      * @return mixed
      */
@@ -171,5 +244,35 @@ class User implements UserInterface, \Serializable
     {
         $this->isActive = $isActive;
     }
+
+    public function getAbsolutePath()
+    {
+        return null === $this->photo
+            ? null
+            : $this->getUploadRootDir().'/'.$this->photo;
+    }
+
+    public function getWebPath()
+    {
+        return null === $this->photo
+            ? null
+            : $this->getUploadDir().'/'.$this->photo;
+    }
+
+    protected function getUploadRootDir()
+    {
+        // the absolute directory path where uploaded
+        // documents should be saved
+        return __DIR__.'/../../../../web/'.$this->getUploadDir();
+    }
+
+    protected function getUploadDir()
+    {
+        // get rid of the __DIR__ so it doesn't screw up
+        // when displaying uploaded doc/image in the view.
+        return 'uploads/documents';
+    }
+
+    
 
 }

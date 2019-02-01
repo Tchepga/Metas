@@ -30,8 +30,11 @@
                         <p>{{ event.libelle|truncate(55)|raw }}</p>
                         <div class="row">
                             <a class="btn btn-primary" href="/event/details?id={{ event.id }}">Détails</a>
-                            <a class="btn btn-warning" href="/event/mod?id={{ event.id }}">Modifier</a>
-                            <a class="btn btn-danger" href="/event/sup?id={{ event.id }}">Supprimer</a>
+                             {% if is_granted(expression('"ROLE_ADMIN" in roles ')) %}
+                                 <a class="btn btn-warning" href="/event/mod?id={{ event.id }}">Modifier</a>
+                                <a class="btn btn-danger" href="/event/sup?id={{ event.id }}">Supprimer</a>
+                             {% endif %}
+                   
                         </div>
                     </div>
                 </div>

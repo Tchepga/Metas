@@ -5,7 +5,7 @@
     <div class="container">
 
       <!-- Portfolio Item Heading -->
-      <h1 class="my-4">METAS
+      <h1 class="" id="titre_accueil">METAS
         <small>Description</small>
       </h1>
 
@@ -15,17 +15,26 @@
         <div class="col-md-8" style=" background-color: yellowgreen; box-shadow: 0px 0px 3px black;">
             <p>Contenue de la description du Metas </p>
         </div>
-
         <div class="col-md-4">
           <h3 class="my-3">Dernière actualité</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae. Sed dui lorem, adipiscing in adipiscing et, interdum nec metus. Mauris ultricies, justo eu convallis placerat, felis enim.</p>
+          {% if event is not empty %}
+          <h4>{{ event.titre }}</h4>
+          <p>{{ event.libelle|truncate(60)|raw }}</p>
+          <a class="btn btn-primary" href="/event/details?id={{ event.id }}">plus d'informations</a>
+          {% else %}
+            <p> Aucun évènement définie</p>
+          {% endif %}
           <h3 class="my-3">Bons plans</h3>
           <ul>
-            <li>Lorem Ipsum</li>
-            <li>Dolor Sit Amet</li>
-            <li>Consectetur</li>
-            <li>Adipiscing Elit</li>
+          {% if goodplans is not empty %}
+
+              <li><a href="#">{{ goodplans.content|truncate(30)|raw}}</a></li>
+
+          {% else %}
+            <li>Aucun bon plan disponible</li>
+          {% endif %}
           </ul>
+          <a class="" href="#">Liste complète</a>
         </div>
 
       </div>

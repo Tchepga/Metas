@@ -3,10 +3,6 @@
 {% block body %}
 
 
-
-
-
-
     <div class="container">
         <ul class="nav nav-tabs" id="myTab" role="tablist" style="margin-top: 15px; ">
 
@@ -15,6 +11,9 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Informations pratiques</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="utilisateur-tab" data-toggle="tab" href="#utilisateur" role="tab" aria-controls="utilisateur" aria-selected="false">Utilisateurs</a>
             </li>
 
         </ul>
@@ -85,51 +84,116 @@
                 </div>
             </div>
 
-            <!-- informations pratique -->
+            <!-- informations pratiques -->
 
             <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab" style="height: 400px;">informations pratiques
+
+                <form class="form-inline my-2 my-lg-0" method="get" action="{{ path('pratical_search') }}" >
+                    <input class="form-control mr-sm-2" name="keyword" type="search" placeholder="Search" aria-label="Code" style=" margin: 10px; float: right;">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit"  style="float: right;">Rechercher</button>
+                </form>
+                {% if is_granted(expression('"ROLE_ADMIN" in roles ')) %}
+                    <a href="/contribution/addpage"><button type="button" class="btn btn-primary">Ajouter un nouveau</button></a>
+                {% endif %}
+
+
+
+                    {% if praticals is not empty %}
+                        {% for pratical in praticals %}
+                            {% if loop.first %}
+                                {% for key in pratical %}
+                                <div class="row">
+                                        <div class="col-sm-8"style="margin-top: 10px;margin-bottom: 10px;">
+                                            <div class="card">
+                                                <div class="card-body">
+
+                                                    <p>{{ key.content|raw }}</p>
+                                                    <div class="row">
+                                                        {% if is_granted(expression('"ROLE_ADMIN" in roles ')) %}
+                                                            <a href="/page/mod?id={{ key.id }}" class="btn btn-warning">modifier</a>
+                                                            <a href="/page/delete?id={{ key.id }}" class="btn btn-danger">suppr</a>
+                                                        {% endif %}
+
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                </div>
+                                {% endfor %}
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                    {% if praticals is empty %}
+                        <div class="alert-primary">
+                            Aucune pratique trouvée!
+                        </div>
+                    {% endif %}
+
+                <!-- Pagination -->
+                <ul class="pagination justify-content-center">
+                    <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">1</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">2</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">3</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- adminstration utilisateur -->
+            {% if is_granted(expression('"ROLE_ADMIN" in roles ')) %}
+            <div class="tab-pane fade" id="utilisateur" role="tabpanel" aria-labelledby="utilisateur-tab" style="height: 400px;">Utilisateurs
 
             <form class="form-inline my-2 my-lg-0" method="get" action="{{ path('pratical_search') }}" >
                 <input class="form-control mr-sm-2" name="keyword" type="search" placeholder="Search" aria-label="Code" style=" margin: 10px; float: right;">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit"  style="float: right;">Rechercher</button>
             </form>
-            {% if is_granted(expression('"ROLE_ADMIN" in roles ')) %}
-                <a href="/contribution/addpratical"><button type="button" class="btn btn-primary">Ajouter un nouveau</button></a>
-            {% endif %}
-
-
-
-                {% if praticals is not empty %}
-                    {% for pratical in praticals %}
-                        {% if loop.first %}
-                            {% for key in pratical %}
-                             <div class="row">
-                                    <div class="col-sm-8"style="margin-top: 10px;margin-bottom: 10px;">
-                                        <div class="card">
-                                            <div class="card-body">
-
-                                                <p>{{ key.content|raw }}</p>
-                                                <div class="row">
-                                                    {% if is_granted(expression('"ROLE_ADMIN" in roles ')) %}
-                                                        <a href="/page/mod?id={{ key.id }}" class="btn btn-warning">modifier</a>
-                                                        <a href="/page/delete?id={{ key.id }}" class="btn btn-danger">suppr</a>
-                                                    {% endif %}
-
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                             </div>
-                            {% endfor %}
-                        {% endif %}
-                    {% endfor %}
+            <a href="/user/adduser"><button type="button" class="btn btn-primary">Ajouter un nouveau utilisateur</button></a><br>
+            {% if users is not empty %}
+                <table id="table_users"  class="table table-sm" >
+                    <thead>
+                        <tr>
+                            <th>Nom</th>
+                            <th>Email</th>
+                            <th>roles</th>
+                            <th>Téléhone</th>
+                            <th>Mod</th>
+                            <th>Sup</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for user in users %}
+                            <tr {% if user.type!="member" %} class="table-danger" {% endif %}>
+                                <td>{{ user.username}}</td>
+                                <td>{{ user.email }}</td>
+                                <td>{{ user.type }}</td>
+                                <td>{{ user.phone }}</td>
+                                <td><a href="/user/moduser?id={{ user.id }}">modifier</a></td>
+                                <td><a href="/user/supuser?id={{ user.id }}">supprimer</a></td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                {% else %}
+                    <strong>Aucun utilisateur présent </strong>
                 {% endif %}
-                {% if praticals is empty %}
-                    <div class="alert-primary">
-                        Aucune pratique trouvée!
-                    </div>
-                {% endif %}
+    
 
             <!-- Pagination -->
             <ul class="pagination justify-content-center">
@@ -156,6 +220,7 @@
                 </li>
             </ul>
          </div>
+         {% endif %}
 
     </div>
 {% endblock %}

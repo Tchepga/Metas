@@ -33,5 +33,5 @@ security:
 
     access_control:
         # require ROLE_ADMIN for /admin*
-         - { path: ^/user/space, roles: ROLE_USER }
-         - { path: ^/admin/space, roles: ROLE_SUPER_ADMIN }
+         - { path: ^/user/space,  roles: ROLE_USER }
+         - { path: ^/admin/space, roles: ROLE_ADMIN }

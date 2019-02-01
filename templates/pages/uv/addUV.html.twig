@@ -19,6 +19,11 @@
     {% endblock %}
 </head>
 <body>
+{% for message in app.flashes('notice') %}
+          <div class="alert-primary">
+              {{ message }}
+          </div>
+{% endfor %}
 <div class="container">
 
   {% if course is defined %}

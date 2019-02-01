@@ -16,16 +16,20 @@
 
         <div class="col-md-8">
           <h3 class="my-3">Différents contacts du Métas</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae. Sed dui lorem, adipiscing in adipiscing et, interdum nec metus. Mauris ultricies, justo eu convallis placerat, felis enim.</p>
-          <h3 class="my-3">Bons plans</h3>
           <ul>
-            <li>Lorem Ipsum</li>
-            <li>Dolor Sit Amet</li>
-            <li>Consectetur</li>
-            <li>Adipiscing Elit</li>
+           {% if is_granted(expression('"ROLE_ADMIN" in roles ')) %}
+            <li><label>Email</label> <input type="text" name="email" id="email" value="{{ president.email }}" >
+              <button type="submit" id="emailBtn" class="btn btn-primary" onclick="validateEmail()">Enregistrer </button>
+            </li>
+            <li><label>Tél</label><input type="text" name="num" value="{{ president.phone }}"  id="num" class="">
+              <button type="submit" id="numBtn" class="btn btn-primary">Enregistrer </button>
+            </li>
+          {% else %}
+            <li><label>Email: </label> {{ president.email }}</li>
+            <li><label>Tél: </label> {{ president.phone }} </li>
+          {% endif %}
           </ul>
-        </div>
-
+           
       </div>
       <!-- /.row -->
 
@@ -35,59 +39,107 @@
        <h1 class="my-4">Le Bureau - 
         <small>Semestre courant</small>
       </h1>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint, explicabo dolores ipsam aliquam inventore corrupti eveniet quisquam quod totam laudantium repudiandae obcaecati ea consectetur debitis velit facere nisi expedita vel?</p>
+      <p> </p>
 
       <!-- Team Members Row -->
       <div class="row">
         <div class="col-lg-12">
-          <h2 class="my-4">Membre</h2>
+          <h2 class="my-4">Membres</h2>
         </div>
         <div class="col-lg-4 col-sm-6 text-center mb-4">
-          <img class="rounded-circle img-fluid d-block mx-auto" src="http://placehold.it/200x200" alt="">
-          <h3>John Smith
-            <small>Job Title</small>
+          <img class="rounded-circle img-fluid d-block mx-auto"
+                  {%  if(president.photo!=NULL) %} src="{{ president.photo }}" 
+                  {% else %} src="http://placehold.it/200x200 "  
+                  {% endif %} alt="president_photo">
+          <h3>{{ president.username }}
+            <small>Président</small>
           </h3>
-          <p>What does this team member to? Keep it short! This is also a great spot for social links!</p>
+          <p>Description en quelques lignes du poste de responsabilités.</p>
         </div>
         <div class="col-lg-4 col-sm-6 text-center mb-4">
-          <img class="rounded-circle img-fluid d-block mx-auto" src="http://placehold.it/200x200" alt="">
-          <h3>John Smith
-            <small>Job Title</small>
+          <img class="rounded-circle img-fluid d-block mx-auto" 
+                  {%  if(secretary.photo!=NULL) %} src="{{ secretary.photo }}" 
+                  {% else %} src="http://placehold.it/200x200 "  
+                  {% endif %} alt="secretary_photo">
+          <h3>{{ secretary.username }}
+            <small>Sécrétaire générale</small>
           </h3>
-          <p>What does this team member to? Keep it short! This is also a great spot for social links!</p>
+          <p>Description en quelques lignes du poste de responsabilités.</p>
         </div>
         <div class="col-lg-4 col-sm-6 text-center mb-4">
-          <img class="rounded-circle img-fluid d-block mx-auto" src="http://placehold.it/200x200" alt="">
-          <h3>John Smith
-            <small>Job Title</small>
+          <img class="rounded-circle img-fluid d-block mx-auto" 
+                  {%  if(treasury.photo!=NULL) %} src="{{ treasury.photo }}" 
+                  {% else %} src="http://placehold.it/200x200 "  
+                  {% endif %} alt="treasury_photo">
+          <h3>{{ treasury.username }}
+            <small>Trésorier</small>
           </h3>
-          <p>What does this team member to? Keep it short! This is also a great spot for social links!</p>
+          <p>Description en quelques lignes du poste de responsabilités.</p>
         </div>
         <div class="col-lg-4 col-sm-6 text-center mb-4">
-          <img class="rounded-circle img-fluid d-block mx-auto" src="http://placehold.it/200x200" alt="">
-          <h3>John Smith
-            <small>Job Title</small>
+          <img class="rounded-circle img-fluid d-block mx-auto" 
+                  {%  if(com.photo!=NULL) %} src="{{ com.photo }}" 
+                  {% else %} src="http://placehold.it/200x200 "  
+                  {% endif %} alt="com_photo">
+          <h3>{{ com.username }}
+            <small>Chargé de la communication</small>
           </h3>
-          <p>What does this team member to? Keep it short! This is also a great spot for social links!</p>
+          <p>Description en quelques lignes du poste de responsabilités.</p>
         </div>
         <div class="col-lg-4 col-sm-6 text-center mb-4">
-          <img class="rounded-circle img-fluid d-block mx-auto" src="http://placehold.it/200x200" alt="">
-          <h3>John Smith
-            <small>Job Title</small>
+          <img class="rounded-circle img-fluid d-block mx-auto" 
+                  {%  if(sport.photo!=NULL) %} src="{{ sport.photo }}" 
+                  {% else %} src="http://placehold.it/200x200 "  
+                  {% endif %} alt="sport_photo">
+          <h3>{{ sport.username }}
+            <small> Chargé sportif</small>
           </h3>
-          <p>What does this team member to? Keep it short! This is also a great spot for social links!</p>
+          <p>Description en quelques lignes du poste de responsabilités.</p>
         </div>
         <div class="col-lg-4 col-sm-6 text-center mb-4">
-          <img class="rounded-circle img-fluid d-block mx-auto" src="http://placehold.it/200x200" alt="">
-          <h3>John Smith
-            <small>Job Title</small>
+          <img class="rounded-circle img-fluid d-block mx-auto" 
+                {%  if(event.photo!=NULL) %} src="{{ event.photo }}" 
+                {% else %} src="http://placehold.it/200x200 "  
+                {% endif %} alt="event_photo">
+          <h3>{{ event.username }}
+            <small>Chargé culturel</small>
           </h3>
-          <p>What does this team member to? Keep it short! This is also a great spot for social links!</p>
+          <p>Description en quelques lignes du poste de responsabilités.</p>
         </div>
       </div>
       <!-- /.row -->
 
     </div>
     <!-- /.container -->
+    
+     <script>
+     
+      var num = $("#num").val();
+       
+      function validateEmail()
+      {
+        var email = $("#email").val();
+         console.log("ok");
+        $.ajax({
+                url:'{{ path('add_contact') }}',
+                type: "GET",
+                dataType: "json",
+                data: {
+                    "email": email
+                },
+                success: function (data)
+                {
+                    console.log("ok");
+                   // console.log(data);
+                    //$('div#ajax-results').html(data.output);
 
+                }
+            });
+          alert("l'émail a été changé");
+      }
+        
+        
+    </script>
+   
   {% endblock %}
+  

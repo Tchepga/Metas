@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -39,6 +41,13 @@ class Event
      * @ORM\Column(type="date")
      */
     private $dateDepart;
+
+
+
+    public function __construct()
+    {
+
+    }
 
     public function getId()
     {
@@ -92,4 +101,6 @@ class Event
 
         return $this;
     }
+
+   
 }

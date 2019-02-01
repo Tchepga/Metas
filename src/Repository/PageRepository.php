@@ -20,21 +20,19 @@ class PageRepository extends ServiceEntityRepository
     }
 
 //    /**
-//     * @return Page[] Returns an array of Page objects
+//     * @return Page[] Returns the top 5 of Page objects
 //     */
-    /*
-    public function findByExampleField($value)
+    
+    public function findTopFive()
     {
         return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
-            ->setParameter('val', $value)
             ->orderBy('p.id', 'ASC')
-            ->setMaxResults(10)
+            ->setMaxResults(5)
             ->getQuery()
             ->getResult()
         ;
     }
-    */
+    
 
     /*
     public function findOneBySomeField($value): ?Page

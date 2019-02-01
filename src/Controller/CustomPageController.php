@@ -15,22 +15,15 @@ class CustomPageController extends AbstractController
 {
 
     /**
-    * @Route("/contribution/addpratical", name="addPratical")
+    * @Route("/contribution/addpage", name="addPage")
     */
     public function addPratical()
     {
        
-        return $this->render('pages/custom/addpratical.html.twig');
+        return $this->render('pages/custom/addpage.html.twig');
     }
 
-    /**
-     * @Route("/contribution/addgoodplan", name="addgoodplan")
-     */
-    public function addGoodPlan()
-    {
-
-        return $this->render('pages/custom/addgoodplan.html.twig');
-    }
+   
 
 
     /**

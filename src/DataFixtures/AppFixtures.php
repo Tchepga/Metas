@@ -24,13 +24,25 @@ class AppFixtures extends Fixture
 
     public function load(ObjectManager $manager)
     {
-        foreach ($this->getUserData() as [$fullname, $username, $password, $email, $roles]) {
+         $goodplan = new \App\Entity\Category();
+         $goodplan->setLibelle("goodplan");
+         $pratical = new \App\Entity\Category();
+         $pratical->setLibelle("pratical");
+
+         $this->addReference('page1', $goodplan);
+         $manager->persist($goodplan);
+         $this->addReference('page2', $pratical);
+         $manager->persist($pratical);
+
+        foreach ($this->getUserData() as [$username, $password, $email ,$type ,$phone ,$roles]) {
             $user = new User();
-            $user->setFullName($fullname);
             $user->setUsername($username);
             $user->setPassword($this->passwordEncoder->encodePassword($user, $password));
             $user->setEmail($email);
+            $user->setType($type);
+            $user->setPhone($phone);
             $user->setRoles($roles);
+            $user->setPhoto("image.jpeg");
 
             $manager->persist($user);
             $this->addReference($username, $user);
@@ -42,10 +54,17 @@ class AppFixtures extends Fixture
     private function getUserData(): array
     {
         return [
-            // $userData = [$fullname, $username, $password, $email, $roles];
-            ['Jane Doe', 'jane_admin', 'kitten', 'jane_admin@symfony.com', ['ROLE_ADMIN']],
-            ['Tom Doe', 'tom_admin', 'kitten', 'tom_admin@symfony.com', ['ROLE_ADMIN']],
-            ['John Doe', 'john_user', 'kitten', 'john_user@symfony.com', ['ROLE_USER']],
+            // $userData = [$username, $password, $email, $type,$phone,$roles];
+            [ 'president_admin', 'kitten', 'metas.belfort@gmail.com','president','0661569987', ['ROLE_ADMIN']],
+            [ 'secretary_admin', 'kitten', 'mail@gmail.com','secretary','0661569974', ['ROLE_USER']],
+            [ 'treasury_admin', 'kitten', 'treasure@gmail.com','treasury','0661569969', ['ROLE_USER']],
+            [ 'Paul Martin', 'kitten', 'paul@gmail.com','communication','0661569477', ['ROLE_USER']],
+            [ 'Benedicte Grâce', 'kitten', 'benedicte@gmail.com','activity','0661569987', ['ROLE_USER']],
+            [ 'Kante Miel', 'kitten', 'kante@gmail.com','sport','0661569987', ['ROLE_USER']],
+            [ 'Marie', 'kitten', 'metas.belfort@gmail.com','member','0661569987', ['ROLE_USER']],
+            [ 'Leslie', 'kitten', 'metas.belfort@gmail.com','member','0661569987', ['ROLE_USER']],
+            [ 'Marcial', 'kitten', 'tom_admin@symfony.com','member','0661567787', ['ROLE_USER']],
+            [ 'Michel_user', 'kitten', 'john_user@symfony.com','member','0661569487', ['ROLE_USER']],
         ];
     }
 }

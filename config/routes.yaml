@@ -20,6 +20,14 @@ add_mod_customer:
     path: /add_mod_customer
     controller: App\Controller\CustomPageController::mod_page
 
+add_check_user:
+    path: /add_check_user
+    controller: App\Controller\UserController::add_check_user
+
+add_mod_user:
+    path: /add_mod_user
+    controller: App\Controller\UserController::mod_user
+
 
 add_view:
      path: /addview
@@ -36,3 +44,7 @@ mod_pratical:
 add_mod_view:
      path: /addmod
      controller: App\Controller\ViewController::modview
+
+add_contact:
+     path: /add_contact
+     controller: App\Controller\PageController::addContact
