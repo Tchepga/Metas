@@ -102,7 +102,7 @@ class UserController extends AbstractController
                 'Nouvel utilisateur ajouté'
             );
 
-            return $this->redirectToRoute('space#utilisateur');
+            return $this->redirectToRoute('space');
         }
         return $this->render('pages/user/adduser.html.twig',[
             'form' => $form->createView()

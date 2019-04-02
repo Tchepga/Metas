@@ -1,3 +1,33 @@
 #titre_accueil{
     margin-top: 120px;
 }
+
+#navbarResponsive{
+    font-weight: bold;
+}
+#conteneur{
+    margin-top: 120px;
+
+}
+#home, #contact, #partenaire, #actu
+{
+    box-shadow: 0px 14px 30px #1b1e21;
+    background-color: white;
+    padding-left: 20px;
+    padding-top: 100px
+}
+
+#actu
+{
+    padding-left: 70px;
+}
+#main_vue{
+    /*background-image: url("img/background1.gif");
+    background-repeat: no-repeat;*/
+    background-color: #DFFAF0;
+
+}
+footer{
+    position: relative;
+    bottom: 0px;
+}

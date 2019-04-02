@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Mouvement des Etudiants Africains et Sympathisants">
+  <meta name="ptchepga" content="">
+
+  <title>Metas</title>
+
+    {% block stylesheets %}
+      <!-- Bootstrap core CSS -->
+      <link href={{ asset('static/bootstrap/css/bootstrap.min.css') }} rel="stylesheet">
+      <script src="https://cdn.ckeditor.com/ckeditor5/11.0.1/classic/ckeditor.js"></script>
+      <!-- Custom styles for this template -->
+      <link href={{ asset('static/portfolio-item.css') }} rel="stylesheet">
+    {% endblock %}
+</head>
+<style>
+    form{
+        width: 450px;
+        box-shadow: 0px 0px 10px #1b1e21;
+        padding: 20px;
+        margin-left: 40px;
+        border-radius: 10px;
+    }
+    #user_roles_1,#user_roles_0
+    {
+        margin-left: 6px;
+    }
+</style>
+<body>
+    {% for message in app.flashes('notice') %}
+              <div class="alert-primary">
+                  {{ message }}
+              </div>
+    {% endfor %}
+
+    {{ form_start(form) }}
+    {# render the task's only field: description #}
+
+
+
+    {{ form_end(form) }}
+
+</body>
+</html>
+

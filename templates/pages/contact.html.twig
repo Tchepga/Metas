@@ -2,7 +2,7 @@
 {% block body %}
 
     <!-- Page Content -->
-    <div class="container">
+    <div class="container" id="contact">
 
       <!-- Portfolio Item Heading -->
       <h1 class="my-4">Contactez - nous :
@@ -48,7 +48,7 @@
         </div>
         <div class="col-lg-4 col-sm-6 text-center mb-4">
           <img class="rounded-circle img-fluid d-block mx-auto"
-                  {%  if(president.photo!=NULL) %} src="{{ president.photo }}" 
+                  {%  if(president.photo!=NULL  ) %} src="{{ asset('uploads/'~president.photo) }}"
                   {% else %} src="http://placehold.it/200x200 "  
                   {% endif %} alt="president_photo">
           <h3>{{ president.username }}
@@ -58,7 +58,7 @@
         </div>
         <div class="col-lg-4 col-sm-6 text-center mb-4">
           <img class="rounded-circle img-fluid d-block mx-auto" 
-                  {%  if(secretary.photo!=NULL) %} src="{{ secretary.photo }}" 
+                  {%  if(secretary.photo!=NULL) %} src="{{ asset('uploads/'~secretary.photo) }}"
                   {% else %} src="http://placehold.it/200x200 "  
                   {% endif %} alt="secretary_photo">
           <h3>{{ secretary.username }}
@@ -68,7 +68,7 @@
         </div>
         <div class="col-lg-4 col-sm-6 text-center mb-4">
           <img class="rounded-circle img-fluid d-block mx-auto" 
-                  {%  if(treasury.photo!=NULL) %} src="{{ treasury.photo }}" 
+                  {%  if(treasury.photo!=NULL) %} src="{{ asset('uploads/'~treasury.photo) }}"
                   {% else %} src="http://placehold.it/200x200 "  
                   {% endif %} alt="treasury_photo">
           <h3>{{ treasury.username }}
@@ -78,7 +78,7 @@
         </div>
         <div class="col-lg-4 col-sm-6 text-center mb-4">
           <img class="rounded-circle img-fluid d-block mx-auto" 
-                  {%  if(com.photo!=NULL) %} src="{{ com.photo }}" 
+                  {%  if(com.photo!=NULL) %} src="{{ asset('uploads/'~com.photo) }}"
                   {% else %} src="http://placehold.it/200x200 "  
                   {% endif %} alt="com_photo">
           <h3>{{ com.username }}
@@ -88,7 +88,7 @@
         </div>
         <div class="col-lg-4 col-sm-6 text-center mb-4">
           <img class="rounded-circle img-fluid d-block mx-auto" 
-                  {%  if(sport.photo!=NULL) %} src="{{ sport.photo }}" 
+                  {%  if(sport.photo!=NULL) %} src="{{ asset('uploads/'~sport.photo) }}"
                   {% else %} src="http://placehold.it/200x200 "  
                   {% endif %} alt="sport_photo">
           <h3>{{ sport.username }}
@@ -98,7 +98,7 @@
         </div>
         <div class="col-lg-4 col-sm-6 text-center mb-4">
           <img class="rounded-circle img-fluid d-block mx-auto" 
-                {%  if(event.photo!=NULL) %} src="{{ event.photo }}" 
+                {%  if(event.photo!=NULL) %} src="{{ asset('uploads/'~event.photo) }}"
                 {% else %} src="http://placehold.it/200x200 "  
                 {% endif %} alt="event_photo">
           <h3>{{ event.username }}

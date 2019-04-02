@@ -1,16 +1,14 @@
 {% extends "layout.html.twig" %}
 {% block body %}
 
-    <div class="container" >
+    <div class="container" id="actu">
 
         {% if is_granted(expression('"ROLE_ADMIN" in roles ')) %}
             <a href="/event/add"><button type="button" class="btn btn-primary">Ajouter un evenement</button></a>
         {% endif %}
 
         <!-- Page Heading -->
-        <h1 class="my-4">Derniers évenements
-
-        </h1>
+        <h1 class="my-4" style="text-align: center; padding-bottom: 30px; text-decoration: underline ">Derniers évenements</h1>
 
         {% set defaultUrl = "http://placehold.it/700x300" %}
         {% if events is defined %}
@@ -22,10 +20,10 @@
                                  src="{% if(event.urlTof is defined) %} {{ asset('uploads/')~event.urlTof }}
                                             {% else %}{{ defaultUrl }}
                                       {% endif %}"
-                                    alt="Problème pour charger l'image">
+                                    alt="Problem on loading image">
                         </a>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-6" style="padding-left: 70px;">
                         <h3>{{ event.titre }}</h3>
                         <p>{{ event.libelle|truncate(55)|raw }}</p>
                         <div class="row">
@@ -34,7 +32,7 @@
                                  <a class="btn btn-warning" href="/event/mod?id={{ event.id }}">Modifier</a>
                                 <a class="btn btn-danger" href="/event/sup?id={{ event.id }}">Supprimer</a>
                              {% endif %}
-                   
+
                         </div>
                     </div>
                 </div>
