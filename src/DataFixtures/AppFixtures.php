@@ -49,13 +49,14 @@ class AppFixtures extends Fixture
         }
 
         $manager->flush();
+
     }
 
     private function getUserData(): array
     {
         return [
             // $userData = [$username, $password, $email, $type,$phone,$roles];
-            [ 'president_admin', 'kitten', 'metas.belfort@gmail.com','president','0661569987', ['ROLE_ADMIN']],
+            [ 'president_admin', 'kitten', 'azera9730@gmail.com','president','0661569987', ['ROLE_ADMIN']],
             [ 'secretary_admin', 'kitten', 'mail@gmail.com','secretary','0661569974', ['ROLE_USER']],
             [ 'treasury_admin', 'kitten', 'treasure@gmail.com','treasury','0661569969', ['ROLE_USER']],
             [ 'Paul Martin', 'kitten', 'paul@gmail.com','communication','0661569477', ['ROLE_USER']],
@@ -67,4 +68,15 @@ class AppFixtures extends Fixture
             [ 'Michel_user', 'kitten', 'john_user@symfony.com','member','0661569487', ['ROLE_USER']],
         ];
     }
+    
+
+   /* private function getPage():array
+    {
+        return [
+            [2,'<b>Carte jeune</b> de nombreux avantages '],
+            [2,'<b>SMEREB et CMU</b> gérez votre sécurité sociale '],
+            [1,'<b>MEGA BOX</b> Cest repartir avec KFC '],
+            [1,'<b>Marché des voges</b> Tout les dimanches']
+        ];
+    }*/
 }

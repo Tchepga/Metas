@@ -55,4 +55,5 @@ class Page
 
         return $this;
     }
+
 }

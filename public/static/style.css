@@ -24,10 +24,16 @@
 #main_vue{
     /*background-image: url("img/background1.gif");
     background-repeat: no-repeat;*/
-    background-color: #DFFAF0;
+    background-color: darkgray;
 
 }
 footer{
     position: relative;
     bottom: 0px;
+}
+body{
+    background-color: black ;
+}
+#home{
+    margin-bottom: 10px ;
 }
