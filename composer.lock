@@ -402,7 +402,7 @@
                 "jdorn/sql-formatter": "^1.2.16",
                 "php": "^5.5.9|^7.0",
                 "symfony/console": "~2.7|~3.0|~4.0",
-                "symfony/dependency-injection": "4.2.7",
+                "symfony/dependency-injection": "~2.7|~3.0|~4.0",
                 "symfony/doctrine-bridge": "~2.7|~3.0|~4.0",
                 "symfony/framework-bundle": "^2.7.22|~3.0|~4.0"
             },
