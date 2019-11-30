@@ -77,9 +77,5 @@
         "symfony": {
             "allow-contrib": false
         }
-    },
-    "post-install-cmd": [
-        "php artisan clear-compiled",
-        "chmod -R 777 public/"
-    ]
+    }
 }
