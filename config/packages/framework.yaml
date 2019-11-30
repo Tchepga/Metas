@@ -1,5 +1,8 @@
 framework:
     secret: '%env(APP_SECRET)%'
+    trusted_hosts:
+        - localhost
+        - 127.0.0.1
     #default_locale: en
     #csrf_protection: true
     #http_method_override: true
