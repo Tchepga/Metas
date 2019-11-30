@@ -50,10 +50,12 @@ class UserController extends AbstractController
         }
 
         if(!$courses){
+            
             $this->addFlash(
                 'notice',
                 'Pas de cours présents, ajoutez un nouveau!'
             );
+
              // throw $this->createNotFoundException('No Courses in the current database');
            return $this->redirectToRoute('addUV');
         }
